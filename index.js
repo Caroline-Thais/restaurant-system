@@ -3,12 +3,12 @@ const app = express();
 const bodyParser =require("body-parser");
 const connection = require("./database/database");
 
+
 const Plate = require("./plates/Plate");
 const Category = require("./categories/Category");
 
 const categoriesController = require("./categories/CategoriesController");
 
-app.use("/", categoriesController);
 
 //View engine
 app.set("view engine", "ejs");
@@ -27,7 +27,7 @@ connection.authenticate().then(() => {
         console.log(error);
     });
 
-
+app.use("/", categoriesController);
 
 //Routes
 app.get("/", (req, res) => {

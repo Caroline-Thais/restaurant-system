@@ -4,17 +4,20 @@ const Category = require("./Category");
 const slugify = require("slugify");
 
 
-router.get("/categories", (req, res) => {
+/*router.get("/categories", (req, res) => {
     res.send("Categories route");
-});
+});*/
 
 router.get("/admin/categories/new", (req, res) => {
     res.render("admin/categories/new");
-})
+});
 
 router.post("/categories/save", (req, res) => {
+
     var title = req.body.title;
+
     if(title != undefined){
+
         Category.create({
             title: title,
             slug: slugify(title)
@@ -33,9 +36,10 @@ router.get("/admin/categories", (req, res) => {
 });
 
 router.post("/categories/delete", (req, res) => {
+    
     var id = req.body.id;
     if(id != undefined){
-        if(!isNaN){
+        if(!isNaN(id)){
             Category.destroy({
                 where: {
                     id: id
